@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">YourExpenses</string>
+    <string name="action_settings">Settings</string>
+  <string-array name="ExpenseCategories">
+    <item>Other</item>
+    <item>Food</item>
+    <item>Clothes</item>
+    <item>Entertainment</item>
+    <item>Transport</item>
+  </string-array>
+  <string-array name="IncomeCategories">
+    <item>Other</item>
+    <item>Salary</item>
+    <item>Credit</item>
+    <item>Present</item>
+  </string-array>
+  <string-array name="Carency">
+    <item>UA</item>
+    <item>USD</item>
+    <item>RUB</item>
+  </string-array>
+</resources>

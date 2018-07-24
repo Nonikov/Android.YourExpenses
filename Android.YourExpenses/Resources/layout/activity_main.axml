@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:actionBarNavMode="tabs">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="top">
+        <TextView
+            android:text="TOTAL INCOME:"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/txtV_Income"
+            android:textSize="17sp"
+            android:textStyle="bold" />
+        <TextView
+            android:text="Text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/txtV_Income"
+            android:id="@+id/txtTotalIncome"
+            android:layout_weight="1"
+            android:textSize="17sp"
+            android:layout_marginRight="10sp" />
+        <TextView
+            android:text="From"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/txtTotalIncome"
+            android:id="@+id/txtFrom"
+            android:layout_weight="2"
+            android:layout_below="@id/txtV_Income"
+            android:textSize="17sp"
+            android:layout_marginHorizontal="10sp" />
+        <TextView
+            android:text="To"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/txtV_Income"
+            android:id="@+id/txtTo"
+            android:layout_weight="2"
+            android:layout_toRightOf="@id/txtFrom"
+            android:textSize="17sp"
+            android:gravity="right"
+            android:layout_marginHorizontal="10sp" />
+        <TextView
+            android:text="TOTAL EXPENSE:"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/txtTotalIncome"
+            android:id="@+id/txtV_Expense"
+            android:textStyle="bold"
+            android:textSize="17sp" />
+        <TextView
+            android:text="Text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/txtV_Expense"
+            android:id="@+id/txtTotalExpense"
+            android:textSize="17sp" />
+        <TextView
+            android:text="TOTAL:"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/txtTotalExpense"
+            android:id="@+id/txtV_Total"
+            android:textStyle="bold"
+            android:textSize="17sp" />
+        <TextView
+            android:text="Text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/txtV_Total"
+            android:id="@+id/txtTotal"
+            android:textSize="17sp" />
+    </RelativeLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="bottom"
+        android:layout_weight="1"
+        android:duplicateParentState="false">
+        <Button
+            android:id="@+id/btnToIncome"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="go to Incomes"
+            android:layout_weight="1"
+            android:background="#ff34b80a" />
+        <Button
+            android:id="@+id/btnToExpenses"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="go to Expenses"
+            android:layout_weight="1"
+            android:background="#fffd7f0f" />
+    </LinearLayout>
+</LinearLayout>
