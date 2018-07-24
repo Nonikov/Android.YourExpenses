@@ -8,6 +8,14 @@
     <item>Entertainment</item>
     <item>Transport</item>
   </string-array>
+  <string-array name="ExpenseCategoriesAll">
+    <item>All</item>
+    <item>Other</item>
+    <item>Food</item>
+    <item>Clothes</item>
+    <item>Fun</item>
+    <item>Transport</item>
+  </string-array>
   <string-array name="IncomeCategories">
     <item>Other</item>
     <item>Salary</item>

@@ -15,8 +15,11 @@ namespace Android.YourExpenses
     {
         Repository db;
         TextView totalIncomeText;
+        TextView totalExpenseText;
         TextView FromDateIncome;
         TextView ToDateIncome;
+        TextView FromDateExpense;
+        TextView ToDateExpense;
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -32,17 +35,27 @@ namespace Android.YourExpenses
             var btnIncome = FindViewById<Button>(Resource.Id.btnToIncome);
 
             totalIncomeText = FindViewById<TextView>(Resource.Id.txtTotal);
+            totalExpenseText = FindViewById<TextView>(Resource.Id.txtTotalE);
             FromDateIncome = FindViewById<TextView>(Resource.Id.textView3);
             ToDateIncome = FindViewById<TextView>(Resource.Id.textView5);
-            var btnUpdate = FindViewById<Button>(Resource.Id.btnUpdate);
+            FromDateExpense = FindViewById<TextView>(Resource.Id.textView3E);
+            ToDateExpense = FindViewById<TextView>(Resource.Id.textView5E);
+            var btnUpdateIncome = FindViewById<Button>(Resource.Id.btnUpdate);
+            var btnUpdateExpense = FindViewById<Button>(Resource.Id.btnUpdateE);
 
             Spinner spnrCategorIncAll = FindViewById<Spinner>(Resource.Id.spnCategIncAll);
+            Spinner spnrCategorExpAll = FindViewById<Spinner>(Resource.Id.spnCategExpAll);
 
-            var CategoriesAdapter = ArrayAdapter.CreateFromResource(this, Resource.Array.IncomeCategoriesAll, Android.Resource.Layout.SimpleSpinnerItem);
-            spnrCategorIncAll.Adapter = CategoriesAdapter;
+            var CategoriesAdapter1 = ArrayAdapter.CreateFromResource(this, Resource.Array.IncomeCategoriesAll, Android.Resource.Layout.SimpleSpinnerItem);
+            spnrCategorIncAll.Adapter = CategoriesAdapter1;
+
+            var CategoriesAdapter2 = ArrayAdapter.CreateFromResource(this, Resource.Array.ExpenseCategoriesAll, Android.Resource.Layout.SimpleSpinnerItem);
+            spnrCategorExpAll.Adapter = CategoriesAdapter2;
 
             FromDateIncome.Text = db.GetMinDate<Income>("Incomes").ToShortDateString();
             ToDateIncome.Text = db.GetMaxDate<Income>("Incomes").ToShortDateString();
+            FromDateExpense.Text = db.GetMinDate<Expense>("Expenses").ToShortDateString();
+            ToDateExpense.Text = db.GetMaxDate<Expense>("Expenses").ToShortDateString();
 
             FromDateIncome.Click += delegate
             {
@@ -62,12 +75,36 @@ namespace Android.YourExpenses
                 frag.Show(FragmentManager, DatePickerFragment.TAG);
             };
 
-            btnUpdate.Click += delegate
+            FromDateExpense.Click += delegate {
+                DatePickerFragment frag = DatePickerFragment.NewInstance(delegate (DateTime time)
+                {
+                    FromDateExpense.Text = time.ToShortDateString();
+                });
+                frag.Show(FragmentManager, DatePickerFragment.TAG);
+            };
+
+            ToDateExpense.Click += delegate
+            {
+                DatePickerFragment frag = DatePickerFragment.NewInstance(delegate (DateTime time)
+                {
+                    ToDateExpense.Text = time.ToShortDateString();
+                });
+                frag.Show(FragmentManager, DatePickerFragment.TAG);
+            };
+
+            btnUpdateIncome.Click += delegate
             {
                 if (spnrCategorIncAll.SelectedItem.ToString().Equals("All"))
                     totalIncomeText.Text = db.GetTotalAmountFromTo<Income>("Incomes", DateTime.Parse(FromDateIncome.Text), DateTime.Parse(ToDateIncome.Text)).ToString();
                 else
                     totalIncomeText.Text = db.GetTotalAmountFromTo<Income>("Incomes", spnrCategorIncAll.SelectedItem.ToString(), DateTime.Parse(FromDateIncome.Text), DateTime.Parse(ToDateIncome.Text)).ToString();
+            };
+
+            btnUpdateExpense.Click += delegate {
+                if (spnrCategorExpAll.SelectedItem.ToString().Equals("All"))
+                    totalExpenseText.Text = db.GetTotalAmountFromTo<Expense>("Expenses", DateTime.Parse(FromDateIncome.Text), DateTime.Parse(ToDateIncome.Text)).ToString();
+                else
+                    totalExpenseText.Text = db.GetTotalAmountFromTo<Expense>("Expenses", spnrCategorExpAll.SelectedItem.ToString(), DateTime.Parse(FromDateIncome.Text), DateTime.Parse(ToDateIncome.Text)).ToString();
             };
 
             btnExpense.Click += (s, e) =>
@@ -88,11 +125,15 @@ namespace Android.YourExpenses
         {
             base.OnResume();
 
+            var txtBalance = FindViewById<TextView>(Resource.Id.textView7);
+
             var a = db.GetTotalAmount<Income>();
             var b = db.GetTotalAmount<Expense>();
 
-            totalIncomeText.Text = db.GetTotalAmountFromTo<Income>("Incomes", DateTime.Parse(FromDateIncome.Text), DateTime.Parse(ToDateIncome.Text)).ToString();
+            txtBalance.Text = (a - b).ToString();
 
+            totalIncomeText.Text = db.GetTotalAmountFromTo<Income>("Incomes", DateTime.Parse(FromDateIncome.Text), DateTime.Parse(ToDateIncome.Text)).ToString();
+            totalExpenseText.Text = db.GetTotalAmountFromTo<Expense>("Expenses", DateTime.Parse(FromDateIncome.Text), DateTime.Parse(ToDateIncome.Text)).ToString();
         }
     }
 }

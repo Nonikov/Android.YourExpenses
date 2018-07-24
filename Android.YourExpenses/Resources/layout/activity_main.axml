@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="#ffe0f7fa">
     <LinearLayout
         android:orientation="vertical"
         android:minWidth="25px"
@@ -25,14 +26,20 @@
                 android:id="@+id/lable1"
                 android:textStyle="bold"
                 android:autoText="false"
-                android:textSize="17sp" />
+                android:textSize="21sp"
+                android:textColor="#ffffffff"
+                android:background="#ff00c853"
+                android:layout_marginBottom="10sp" />
             <TextView
                 android:text="Text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/lable1"
                 android:id="@+id/txtTotal"
-                android:textSize="17sp" />
+                android:textSize="21sp"
+                android:textColor="@android:color/black"
+                android:layout_marginBottom="10sp"
+                android:textStyle="bold" />
             <TextView
                 android:text="UA"
                 android:layout_width="wrap_content"
@@ -41,14 +48,18 @@
                 android:id="@+id/textView1"
                 android:layout_toRightOf="@id/txtTotal"
                 android:layout_marginLeft="10sp"
-                android:textSize="17sp" />
+                android:textSize="21sp"
+                android:textColor="@android:color/black"
+                android:layout_marginBottom="10sp" />
             <TextView
                 android:text="From"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/txtTotal"
                 android:id="@+id/textView2"
-                android:textSize="17sp" />
+                android:textSize="21sp"
+                android:textColor="@android:color/black"
+                android:textStyle="italic" />
             <TextView
                 android:text="FromDate"
                 android:layout_width="wrap_content"
@@ -57,7 +68,9 @@
                 android:id="@+id/textView3"
                 android:layout_below="@id/textView1"
                 android:layout_marginLeft="10sp"
-                android:textSize="17sp" />
+                android:textSize="21sp"
+                android:textColor="#ff0091ea"
+                android:textStyle="bold|italic" />
             <TextView
                 android:text="To"
                 android:layout_width="wrap_content"
@@ -66,7 +79,9 @@
                 android:id="@+id/textView4"
                 android:layout_below="@id/textView1"
                 android:layout_marginLeft="10sp"
-                android:textSize="17sp" />
+                android:textSize="21sp"
+                android:textColor="@android:color/black"
+                android:textStyle="italic" />
             <TextView
                 android:text="ToDate"
                 android:layout_width="wrap_content"
@@ -75,28 +90,34 @@
                 android:id="@+id/textView5"
                 android:layout_below="@id/textView1"
                 android:layout_marginLeft="10sp"
-                android:textSize="17sp" />
-            <Button
-                android:text="update"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/btnUpdate"
-                android:layout_alignParentRight="true"
-                android:layout_centerInParent="true" />
+                android:textSize="21sp"
+                android:textColor="#ff0091ea"
+                android:textStyle="bold|italic" />
             <TextView
                 android:text="Categorie:"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_toRightOf="@id/lable1"
                 android:id="@+id/textView6"
-                android:textSize="17sp"
-                android:layout_marginLeft="60sp" />
+                android:textSize="21sp"
+                android:layout_marginLeft="60sp"
+                android:textColor="#ff6200ea"
+                android:layout_centerInParent="false" />
             <Spinner
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_toRightOf="@id/textView6"
                 android:id="@+id/spnCategIncAll"
-                android:layout_alignParentRight="true" />
+                android:layout_alignParentRight="true"
+                android:scrollbarSize="21sp" />
+            <Button
+                android:text="update"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/btnUpdate"
+                android:textSize="20sp"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="60sp" />
         </RelativeLayout>
         <RelativeLayout
             android:minWidth="25px"
@@ -110,7 +131,96 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/lable2"
                 android:textStyle="bold"
-                android:textSize="17sp" />
+                android:textSize="21sp"
+                android:textColor="#ffffffff"
+                android:background="#ffff6d00"
+                android:layout_marginBottom="10sp" />
+            <TextView
+                android:text="Text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/lable2"
+                android:id="@+id/txtTotalE"
+                android:textSize="21sp"
+                android:textColor="@android:color/black"
+                android:layout_marginBottom="10sp"
+                android:textStyle="bold" />
+            <TextView
+                android:text="UA"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/lable2"
+                android:id="@+id/textView1E"
+                android:layout_toRightOf="@id/txtTotalE"
+                android:layout_marginLeft="10sp"
+                android:textSize="21sp"
+                android:textColor="@android:color/black"
+                android:layout_marginBottom="10sp" />
+            <TextView
+                android:text="From"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/txtTotalE"
+                android:id="@+id/textView2E"
+                android:textSize="21sp"
+                android:textColor="@android:color/black"
+                android:textStyle="italic" />
+            <TextView
+                android:text="FromDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/textView2E"
+                android:id="@+id/textView3E"
+                android:layout_below="@id/textView1E"
+                android:layout_marginLeft="10sp"
+                android:textSize="21sp"
+                android:textColor="#ff0091ea"
+                android:textStyle="bold|italic" />
+            <TextView
+                android:text="To"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/textView3E"
+                android:id="@+id/textView4E"
+                android:layout_below="@id/textView1E"
+                android:layout_marginLeft="10sp"
+                android:textSize="21sp"
+                android:textColor="@android:color/black"
+                android:textStyle="italic" />
+            <TextView
+                android:text="ToDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/textView4E"
+                android:id="@+id/textView5E"
+                android:layout_below="@id/textView1E"
+                android:layout_marginLeft="10sp"
+                android:textSize="21sp"
+                android:textColor="#ff0091ea"
+                android:textStyle="bold|italic" />
+            <Button
+                android:text="update"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/btnUpdateE"
+                android:layout_alignParentRight="true"
+                android:textSize="20sp"
+                android:layout_marginTop="60sp" />
+            <TextView
+                android:text="Categorie:"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/lable2"
+                android:id="@+id/textView6E"
+                android:textSize="21sp"
+                android:layout_marginLeft="50sp"
+                android:textColor="#ff6200ea" />
+            <Spinner
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/textView6"
+                android:id="@+id/spnCategExpAll"
+                android:layout_alignParentRight="true" />
         </RelativeLayout>
         <RelativeLayout
             android:minWidth="25px"
@@ -124,7 +234,29 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/lable3"
                 android:textStyle="bold"
-                android:textSize="17sp" />
+                android:textSize="21sp"
+                android:textColor="#ffffffff"
+                android:background="#ff0091ea"
+                android:layout_marginBottom="10sp" />
+            <TextView
+                android:text="Text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/lable3"
+                android:id="@+id/textView7"
+                android:textSize="21sp"
+                android:textColor="@android:color/black"
+                android:textStyle="bold" />
+            <TextView
+                android:text="UA"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/textView7"
+                android:id="@+id/textView8"
+                android:layout_below="@id/lable3"
+                android:layout_marginLeft="10sp"
+                android:textSize="21sp"
+                android:textColor="@android:color/black" />
         </RelativeLayout>
     </LinearLayout>
     <LinearLayout
@@ -138,13 +270,17 @@
             android:layout_height="wrap_content"
             android:text="go to Incomes"
             android:layout_weight="1"
-            android:background="#ff34b80a" />
+            android:background="#ff00c853"
+            android:textSize="18sp"
+            android:textColor="#ffffffff" />
         <Button
             android:id="@+id/btnToExpenses"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="go to Expenses"
             android:layout_weight="1"
-            android:background="#fffd7f0f" />
+            android:background="#ffff6d00"
+            android:textSize="18sp"
+            android:textColor="#ffffffff" />
     </LinearLayout>
 </LinearLayout>
