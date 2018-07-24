@@ -1,20 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <TextView
-        android:text="Categorie"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/txtViewCategorie" />
-    <TextView
-        android:text="Name"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/txtViewName" />
     <TextView
         android:text="Date"
         android:textAppearance="?android:attr/textAppearanceMedium"
@@ -22,9 +9,35 @@
         android:layout_height="wrap_content"
         android:id="@+id/txtViewDate" />
     <TextView
+        android:text="Categorie"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/txtViewCategorie"
+        android:layout_below="@id/txtViewDate" />
+    <TextView
+        android:text="Name"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/txtViewName"
+        android:layout_below="@id/txtViewCategorie" />
+    <TextView
         android:text="Amount"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/txtViewAmount" />
-</LinearLayout>
+        android:id="@+id/txtViewAmount"
+        android:layout_below="@id/txtViewCategorie"
+        android:layout_toRightOf="@id/txtViewName"
+        android:layout_marginLeft="20sp" />
+    <TextView
+        android:text="Currency"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/txtViewAmount"
+        android:id="@+id/txtViewCurrency"
+        android:layout_below="@id/txtViewCategorie"
+        android:layout_marginLeft="20sp" />
+</RelativeLayout>

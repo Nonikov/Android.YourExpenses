@@ -23,5 +23,6 @@ namespace Android.YourExpenses.Resources.Model
         public string Categorie { get; set; }   
         public DateTime Date { get; set; }
         public double Amount { get; set; }
+        public string Currency { get; set; }
     }
 }

@@ -52,11 +52,13 @@ namespace Android.YourExpenses.Resources
             var txtName = view.FindViewById<TextView>(Resource.Id.txtViewName);
             var txtDate = view.FindViewById<TextView>(Resource.Id.txtViewDate);
             var txtAmount = view.FindViewById<TextView>(Resource.Id.txtViewAmount);
+            var txtCurrency = view.FindViewById<TextView>(Resource.Id.txtViewCurrency);
 
             txtCategorie.Text = lstExpense[position].Categorie;
             txtName.Text =  lstExpense[position].Name;
             txtDate.Text = lstExpense[position].Date.ToString();
             txtAmount.Text = lstExpense[position].Amount.ToString();
+            txtCurrency.Text = lstExpense[position].Currency?.ToString();
 
             return view;
         }

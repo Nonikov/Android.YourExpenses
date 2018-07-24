@@ -14,10 +14,9 @@ namespace Android.YourExpenses
     public class MainActivity : AppCompatActivity
     {
         Repository db;
-        TextView txtFrom;
-        TextView txtTo;
-        TextView txtTotal;
-
+        TextView totalIncomeText;
+        TextView FromDateIncome;
+        TextView ToDateIncome;
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -32,37 +31,49 @@ namespace Android.YourExpenses
             var btnExpense = FindViewById<Button>(Resource.Id.btnToExpenses);
             var btnIncome = FindViewById<Button>(Resource.Id.btnToIncome);
 
-            txtFrom = FindViewById<TextView>(Resource.Id.txtFrom);
-            txtTo = FindViewById<TextView>(Resource.Id.txtTo);
-            txtTotal = FindViewById<TextView>(Resource.Id.txtTotal);
+            totalIncomeText = FindViewById<TextView>(Resource.Id.txtTotal);
+            FromDateIncome = FindViewById<TextView>(Resource.Id.textView3);
+            ToDateIncome = FindViewById<TextView>(Resource.Id.textView5);
+            var btnUpdate = FindViewById<Button>(Resource.Id.btnUpdate);
 
-            txtFrom.Click += delegate
+            Spinner spnrCategorIncAll = FindViewById<Spinner>(Resource.Id.spnCategIncAll);
+
+            var CategoriesAdapter = ArrayAdapter.CreateFromResource(this, Resource.Array.IncomeCategoriesAll, Android.Resource.Layout.SimpleSpinnerItem);
+            spnrCategorIncAll.Adapter = CategoriesAdapter;
+
+            FromDateIncome.Text = db.GetMinDate<Income>("Incomes").ToShortDateString();
+            ToDateIncome.Text = db.GetMaxDate<Income>("Incomes").ToShortDateString();
+
+            FromDateIncome.Click += delegate
             {
                 DatePickerFragment frag = DatePickerFragment.NewInstance(delegate (DateTime time)
                 {
-                    txtFrom.Text = time.ToShortDateString();
+                    FromDateIncome.Text = time.ToShortDateString();
                 });
                 frag.Show(FragmentManager, DatePickerFragment.TAG);
             };
 
-            txtTo.Click += delegate
+            ToDateIncome.Click += delegate
             {
                 DatePickerFragment frag = DatePickerFragment.NewInstance(delegate (DateTime time)
                 {
-                    txtTo.Text = time.ToShortDateString();
+                    ToDateIncome.Text = time.ToShortDateString();
                 });
                 frag.Show(FragmentManager, DatePickerFragment.TAG);
             };
 
-            txtTotal.Click += delegate
+            btnUpdate.Click += delegate
             {
-                txtTotal.Text = db.GetMaxDate<Income>("Incomes").ToShortDateString();
+                if (spnrCategorIncAll.SelectedItem.ToString().Equals("All"))
+                    totalIncomeText.Text = db.GetTotalAmountFromTo<Income>("Incomes", DateTime.Parse(FromDateIncome.Text), DateTime.Parse(ToDateIncome.Text)).ToString();
+                else
+                    totalIncomeText.Text = db.GetTotalAmountFromTo<Income>("Incomes", spnrCategorIncAll.SelectedItem.ToString(), DateTime.Parse(FromDateIncome.Text), DateTime.Parse(ToDateIncome.Text)).ToString();
             };
 
             btnExpense.Click += (s, e) =>
             {
                 Intent expenseActivity = new Intent(this, typeof(ExpenseActivity));
-                
+
                 StartActivity(expenseActivity);
             };
 
@@ -77,21 +88,11 @@ namespace Android.YourExpenses
         {
             base.OnResume();
 
-            var txtV_Income = FindViewById<TextView>(Resource.Id.txtTotalIncome);
-            var txtV_Expense = FindViewById<TextView>(Resource.Id.txtTotalExpense);
-            var txtV_Total = FindViewById<TextView>(Resource.Id.txtTotal);
-
             var a = db.GetTotalAmount<Income>();
             var b = db.GetTotalAmount<Expense>();
 
-            txtV_Income.Text = a.ToString();
-            txtV_Expense.Text = b.ToString();
-            txtV_Total.Text = (a - b).ToString();
+            totalIncomeText.Text = db.GetTotalAmountFromTo<Income>("Incomes", DateTime.Parse(FromDateIncome.Text), DateTime.Parse(ToDateIncome.Text)).ToString();
 
-            txtV_Income.Click += delegate
-            {
-                txtV_Income.Text = db.GetTotalAmountFromTo<Income>("Incomes", "Salary", Convert.ToDateTime(txtFrom.Text), Convert.ToDateTime(txtTo.Text)).ToString();
-            };
         }
     }
 }

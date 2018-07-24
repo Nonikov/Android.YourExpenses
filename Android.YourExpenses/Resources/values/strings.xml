@@ -14,6 +14,13 @@
     <item>Credit</item>
     <item>Present</item>
   </string-array>
+  <string-array name="IncomeCategoriesAll">
+    <item>All</item>
+    <item>Other</item>
+    <item>Salary</item>
+    <item>Credit</item>
+    <item>Present</item>
+  </string-array>
   <string-array name="Carency">
     <item>UA</item>
     <item>USD</item>

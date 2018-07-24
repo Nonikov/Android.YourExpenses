@@ -41,14 +41,14 @@ namespace Android.YourExpenses
             btnTime.Text = String.Format("{0:t}", DateTime.Now);
 
             //Categories spinner
-            Spinner spinner1 = FindViewById<Spinner>(Resource.Id.spinner1);
-            Spinner spinnerMoney = FindViewById<Spinner>(Resource.Id.spinnerMoney);
+            Spinner spinnerCategorie = FindViewById<Spinner>(Resource.Id.spinnerCategorieExpense);
+            Spinner spinnerCurrency = FindViewById<Spinner>(Resource.Id.spinnerCurrencyExpense);
 
             var CategoriesAdapter = ArrayAdapter.CreateFromResource(this, Resource.Array.ExpenseCategories, Android.Resource.Layout.SimpleSpinnerItem);
-            spinner1.Adapter = CategoriesAdapter;
+            spinnerCategorie.Adapter = CategoriesAdapter;
 
-            var categorMoneyAdapter = ArrayAdapter.CreateFromResource(this, Resource.Array.Carency, Android.Resource.Layout.SimpleSpinnerItem);
-            spinnerMoney.Adapter = categorMoneyAdapter;
+            var categorCurrencyAdapter = ArrayAdapter.CreateFromResource(this, Resource.Array.Carency, Android.Resource.Layout.SimpleSpinnerItem);
+            spinnerCurrency.Adapter = categorCurrencyAdapter;
 
             lstData = FindViewById<ListView>(Resource.Id.listView);
 
@@ -91,9 +91,10 @@ namespace Android.YourExpenses
                 Expense expense = new Expense()
                 {
                     Name = edtName.Text,
-                    Categorie = spinner1.SelectedItem.ToString(),
+                    Categorie = spinnerCategorie.SelectedItem.ToString(),
                     Date = Convert.ToDateTime(btnDate.Text + " " + btnTime.Text),
-                    Amount = Convert.ToDouble(edtAmount.Text)
+                    Amount = Convert.ToDouble(edtAmount.Text),
+                    Currency = spinnerCurrency.SelectedItem.ToString()
                 };
                 db.InsertIntoTable(expense);
                 LoadData();
@@ -105,11 +106,12 @@ namespace Android.YourExpenses
                 {
                     Id = int.Parse(edtName.Tag.ToString()),
                     Name = edtName.Text,
-                    Categorie = spinner1.SelectedItem.ToString(),
+                    Categorie = spinnerCategorie.SelectedItem.ToString(),
                     Date = Convert.ToDateTime(btnDate.Text + " " + btnTime.Text),
-                    Amount = Convert.ToDouble(edtAmount.Text)
+                    Amount = Convert.ToDouble(edtAmount.Text),
+                    Currency = spinnerCurrency.SelectedItem.ToString()
                 };
-                db.UpdateTable<Expense>(expense);
+                db.UpdateTable<Expense>("Expenses", expense);
                 LoadData();
             };
 
@@ -119,9 +121,10 @@ namespace Android.YourExpenses
                 {
                     Id = int.Parse(edtName.Tag.ToString()),
                     Name = edtName.Text,
-                    Categorie = spinner1.SelectedItem.ToString(),
+                    Categorie = spinnerCategorie.SelectedItem.ToString(),
                     Date = Convert.ToDateTime(btnDate.Text + " " + btnTime.Text),
-                    Amount = Convert.ToDouble(edtAmount.Text)
+                    Amount = Convert.ToDouble(edtAmount.Text),
+                    Currency = spinnerCurrency.SelectedItem.ToString()
                 };
                 db.DeleteTable(expense);
                 LoadData();
@@ -150,7 +153,7 @@ namespace Android.YourExpenses
 
                 btnDate.Text = String.Format("{0:d}", Convert.ToDateTime(txtDate.Text));
                 btnTime.Text = String.Format("{0:t}", Convert.ToDateTime(txtDate.Text));
-                spinner1.SetSelection(0);
+                spinnerCategorie.SetSelection(0);
                 edtName.Text = txtName.Text;
                 edtName.Tag = e.Id;
 

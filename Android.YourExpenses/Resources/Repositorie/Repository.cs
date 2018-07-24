@@ -40,13 +40,13 @@ namespace Android.YourExpenses.Resources.DateHelper
             }
         }
 
-        public bool InsertIntoTable<T>(T expense)
+        public bool InsertIntoTable<T>(T table)
         {
             try
             {
                 using (var connection = new SQLiteConnection(path))
                 {
-                    connection.Insert(expense);
+                    connection.Insert(table);
                     return true;
                 }
             }
@@ -73,13 +73,13 @@ namespace Android.YourExpenses.Resources.DateHelper
             }
         }
 
-        public bool UpdateTable<T>(dynamic expense) where T : new()
+        public bool UpdateTable<T>(string tableName, dynamic table) where T : new()
         {
             try
             {
                 using (var connection = new SQLiteConnection(path))
                 {
-                    connection.Query<T>("UPDATE Incomes set Name=?, Categorie=?, Date=?, Amount =? Where Id=?", expense.Name, expense.Categorie, expense.Date, expense.Amount, expense.Id);
+                    connection.Query<T>($"UPDATE {tableName} set Name=?, Categorie=?, Date=?, Amount =?, Currency=? Where Id=?", table.Name, table.Categorie, table.Date, table.Amount, table.Currency, table.Id);
                     return true;
                 }
             }
@@ -90,13 +90,13 @@ namespace Android.YourExpenses.Resources.DateHelper
             }
         }
 
-        public bool DeleteTable<T>(T expense)
+        public bool DeleteTable<T>(T table)
         {
             try
             {
                 using (var connection = new SQLiteConnection(path))
                 {
-                    connection.Delete(expense);
+                    connection.Delete(table);
                     return true;
                 }
             }

@@ -4,87 +4,134 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:actionBarNavMode="tabs">
-    <RelativeLayout
+    android:orientation="vertical">
+    <LinearLayout
+        android:orientation="vertical"
+        android:minWidth="25px"
+        android:minHeight="25px"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:gravity="top">
-        <TextView
-            android:text="TOTAL INCOME:"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/txtV_Income"
-            android:textSize="17sp"
-            android:textStyle="bold" />
-        <TextView
-            android:text="Text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/txtV_Income"
-            android:id="@+id/txtTotalIncome"
-            android:layout_weight="1"
-            android:textSize="17sp"
-            android:layout_marginRight="10sp" />
-        <TextView
-            android:text="From"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_toRightOf="@id/txtTotalIncome"
-            android:id="@+id/txtFrom"
-            android:layout_weight="2"
-            android:layout_below="@id/txtV_Income"
-            android:textSize="17sp"
-            android:layout_marginHorizontal="10sp" />
-        <TextView
-            android:text="To"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/txtV_Income"
-            android:id="@+id/txtTo"
-            android:layout_weight="2"
-            android:layout_toRightOf="@id/txtFrom"
-            android:textSize="17sp"
-            android:gravity="right"
-            android:layout_marginHorizontal="10sp" />
-        <TextView
-            android:text="TOTAL EXPENSE:"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/txtTotalIncome"
-            android:id="@+id/txtV_Expense"
-            android:textStyle="bold"
-            android:textSize="17sp" />
-        <TextView
-            android:text="Text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/txtV_Expense"
-            android:id="@+id/txtTotalExpense"
-            android:textSize="17sp" />
-        <TextView
-            android:text="TOTAL:"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/txtTotalExpense"
-            android:id="@+id/txtV_Total"
-            android:textStyle="bold"
-            android:textSize="17sp" />
-        <TextView
-            android:text="Text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/txtV_Total"
-            android:id="@+id/txtTotal"
-            android:textSize="17sp" />
-    </RelativeLayout>
+        android:layout_weight="1">
+        <RelativeLayout
+            android:minWidth="25px"
+            android:minHeight="40sp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+            <TextView
+                android:text="TOTAL INCOME:"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/lable1"
+                android:textStyle="bold"
+                android:autoText="false"
+                android:textSize="17sp" />
+            <TextView
+                android:text="Text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/lable1"
+                android:id="@+id/txtTotal"
+                android:textSize="17sp" />
+            <TextView
+                android:text="UA"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/lable1"
+                android:id="@+id/textView1"
+                android:layout_toRightOf="@id/txtTotal"
+                android:layout_marginLeft="10sp"
+                android:textSize="17sp" />
+            <TextView
+                android:text="From"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/txtTotal"
+                android:id="@+id/textView2"
+                android:textSize="17sp" />
+            <TextView
+                android:text="FromDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/textView2"
+                android:id="@+id/textView3"
+                android:layout_below="@id/textView1"
+                android:layout_marginLeft="10sp"
+                android:textSize="17sp" />
+            <TextView
+                android:text="To"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/textView3"
+                android:id="@+id/textView4"
+                android:layout_below="@id/textView1"
+                android:layout_marginLeft="10sp"
+                android:textSize="17sp" />
+            <TextView
+                android:text="ToDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/textView4"
+                android:id="@+id/textView5"
+                android:layout_below="@id/textView1"
+                android:layout_marginLeft="10sp"
+                android:textSize="17sp" />
+            <Button
+                android:text="update"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/btnUpdate"
+                android:layout_alignParentRight="true"
+                android:layout_centerInParent="true" />
+            <TextView
+                android:text="Categorie:"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/lable1"
+                android:id="@+id/textView6"
+                android:textSize="17sp"
+                android:layout_marginLeft="60sp" />
+            <Spinner
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/textView6"
+                android:id="@+id/spnCategIncAll"
+                android:layout_alignParentRight="true" />
+        </RelativeLayout>
+        <RelativeLayout
+            android:minWidth="25px"
+            android:minHeight="40sp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+            <TextView
+                android:text="TOTAL EXPENSE:"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/lable2"
+                android:textStyle="bold"
+                android:textSize="17sp" />
+        </RelativeLayout>
+        <RelativeLayout
+            android:minWidth="25px"
+            android:minHeight="40sp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+            <TextView
+                android:text="BALANCE:"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/lable3"
+                android:textStyle="bold"
+                android:textSize="17sp" />
+        </RelativeLayout>
+    </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="bottom"
-        android:layout_weight="1"
-        android:duplicateParentState="false">
+        android:layout_weight="1">
         <Button
             android:id="@+id/btnToIncome"
             android:layout_width="wrap_content"
