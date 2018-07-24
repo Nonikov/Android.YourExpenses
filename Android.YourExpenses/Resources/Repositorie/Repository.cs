@@ -135,7 +135,7 @@ namespace Android.YourExpenses.Resources.DateHelper
             {
                 using (var connection = new SQLiteConnection(path))
                 {
-                    var items = connection.Query<T>($"SELECT * FROM {tableName} WHERE Date >= ? AND Date <= ?", fromD, toD);
+                    var items = connection.Query<T>($"SELECT Amount FROM {tableName} WHERE Date >= ? AND Date <= ?", fromD, toD);
                     double temp = 0;
                     foreach (dynamic item in items)
                     {
@@ -148,6 +148,64 @@ namespace Android.YourExpenses.Resources.DateHelper
             {
                 Log.Info("SQLiteEx", ex.Message);
                 return -1;
+            }
+        }
+
+        public double GetTotalAmountFromTo<T>(string tableName, string categorie, DateTime fromD, DateTime toD) where T : new()
+        {
+            try
+            {
+                using (var connection = new SQLiteConnection(path))
+                {
+                    var items = connection.Query<T>($"SELECT Amount FROM {tableName} WHERE Categorie LIKE ? AND Date >= ? AND Date <= ?", categorie, fromD, toD);
+                    double temp = 0;
+                    foreach (dynamic item in items)
+                    {
+                        temp += item.Amount;
+                    }
+                    return temp;
+                }
+            }
+            catch (SQLiteException ex)
+            {
+                Log.Info("SQLiteEx", ex.Message);
+                return -1;
+            }
+        }
+
+        public DateTime GetMinDate<T>(string tableName) where T : new()
+        {
+            try
+            {
+                using (var connection = new SQLiteConnection(path))
+                {
+                    dynamic item = connection.Query<T>($"SELECT Date FROM {tableName} WHERE Date = (SELECT min(Date) FROM {tableName})").FirstOrDefault<T>();
+                  
+                    return item.Date;
+                }
+            }
+            catch (SQLiteException ex)
+            {
+                Log.Info("SQLiteEx", ex.Message);
+                return DateTime.Parse("01/01/0010");
+            }
+        }
+
+        public DateTime GetMaxDate<T>(string tableName) where T : new()
+        {
+            try
+            {
+                using (var connection = new SQLiteConnection(path))
+                {
+                    dynamic item = connection.Query<T>($"SELECT Date FROM {tableName} WHERE Date = (SELECT max(Date) FROM {tableName})").FirstOrDefault<T>();
+
+                    return item.Date;
+                }
+            }
+            catch (SQLiteException ex)
+            {
+                Log.Info("SQLiteEx", ex.Message);
+                return DateTime.Parse("01/01/0002");
             }
         }
     }

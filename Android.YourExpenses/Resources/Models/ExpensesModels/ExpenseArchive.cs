@@ -17,9 +17,9 @@ namespace Android.YourExpenses.Resources.Models.ExpensesModels
     {
         [PrimaryKey, AutoIncrement]
         public int Id { get; set; }
-        public string Name { get; set; }
         public string Categorie { get; set; }
-        public DateTime DateFromTo { get; set; }
+        public DateTime DateFrom { get; set; }
+        public DateTime DateTo { get; set; }
         public double TotalAmount { get; set; }
     }
 }

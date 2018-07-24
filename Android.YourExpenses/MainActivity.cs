@@ -16,6 +16,7 @@ namespace Android.YourExpenses
         Repository db;
         TextView txtFrom;
         TextView txtTo;
+        TextView txtTotal;
 
 
         protected override void OnCreate(Bundle savedInstanceState)
@@ -32,7 +33,8 @@ namespace Android.YourExpenses
             var btnIncome = FindViewById<Button>(Resource.Id.btnToIncome);
 
             txtFrom = FindViewById<TextView>(Resource.Id.txtFrom);
-             txtTo = FindViewById<TextView>(Resource.Id.txtTo);
+            txtTo = FindViewById<TextView>(Resource.Id.txtTo);
+            txtTotal = FindViewById<TextView>(Resource.Id.txtTotal);
 
             txtFrom.Click += delegate
             {
@@ -52,6 +54,11 @@ namespace Android.YourExpenses
                 frag.Show(FragmentManager, DatePickerFragment.TAG);
             };
 
+            txtTotal.Click += delegate
+            {
+                txtTotal.Text = db.GetMaxDate<Income>("Incomes").ToShortDateString();
+            };
+
             btnExpense.Click += (s, e) =>
             {
                 Intent expenseActivity = new Intent(this, typeof(ExpenseActivity));
@@ -65,7 +72,6 @@ namespace Android.YourExpenses
                 StartActivity(incomeActivity);
             };
         }
-
 
         protected override void OnResume()
         {
@@ -84,10 +90,9 @@ namespace Android.YourExpenses
 
             txtV_Income.Click += delegate
             {
-                txtV_Income.Text = db.GetTotalAmountFromTo<Income>("Incomes", Convert.ToDateTime(txtFrom.Text), Convert.ToDateTime(txtTo.Text)).ToString();
+                txtV_Income.Text = db.GetTotalAmountFromTo<Income>("Incomes", "Salary", Convert.ToDateTime(txtFrom.Text), Convert.ToDateTime(txtTo.Text)).ToString();
             };
         }
-
     }
 }
 
